@@ -601,6 +601,19 @@
       padding-top: 16px;
     }
 
+    /* ─── Marketing highlights ───────────────────────── */
+    .mk {
+      color: var(--copper);
+      font-weight: 500;
+    }
+
+    .mk-ul {
+      color: var(--fg);
+      font-weight: 500;
+      border-bottom: 1.5px solid var(--copper-dim);
+      padding-bottom: 1px;
+    }
+
     .about-side { display: flex; flex-direction: column; gap: 24px; }
 
     .sb-blk { display: flex; flex-direction: column; gap: 10px; }
@@ -987,14 +1000,14 @@
         <div class="hero-eyebrow fu d1">
           <div class="copper-node"></div>
           <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.05em;color:rgba(239,230,210,0.55);">
-            Specialty coffee — brewed well, served better.
+            Specialty coffee — <strong style="color:rgba(239,230,210,0.85);font-weight:500;">brewed well, served better.</strong>
           </span>
         </div>
 
         <h1 class="hero-hl fu d2">Every cup,<br>dialled in.</h1>
 
         <p class="hero-sub fu d3">
-          Specialty coffee and all-day food — sourced carefully, calibrated daily,
+          Specialty coffee and all-day food — <strong style="color:rgba(239,230,210,0.85);font-weight:500;">sourced carefully, calibrated daily,</strong>
           served without the theatre.
         </p>
 
@@ -1036,7 +1049,7 @@
           </div>
           <h2 class="item-title">Matcha Latte</h2>
           <p class="item-desc">
-            Ceremonial-grade matcha whisked to a smooth paste, poured over steamed oat milk and finished with a dusting of matcha powder. Earthy, naturally sweet, and dialled for balance — not too grassy, not too milky. A Kanoffee staple since day one.
+            <span class="mk-ul">Ceremonial-grade matcha</span> whisked to a smooth paste, poured over steamed oat milk and finished with a dusting of matcha powder. Earthy, naturally sweet, and dialled for balance — not too grassy, not too milky. <span class="mk">A Kanoffee staple since day one.</span>
           </p>
           <div class="item-meta">
             <div class="meta-col">
@@ -1071,7 +1084,7 @@
           </div>
           <h2 class="item-title">Vanilla Bean Latte</h2>
           <p class="item-desc">
-            Double shot espresso with house-made vanilla bean syrup and steamed whole milk. We scrape real vanilla pods — no extract, no shortcuts. The sweetness is restrained; the bean specks in the foam are the tell. Warm, smooth, and consistently the most-reordered drink on the menu.
+            Double shot espresso with <span class="mk-ul">house-made vanilla bean syrup</span> and steamed whole milk. We scrape <strong>real vanilla pods — no extract, no shortcuts.</strong> The sweetness is restrained; the bean specks in the foam are the tell. Warm, smooth, and consistently <span class="mk">the most-reordered drink on the menu.</span>
           </p>
           <div class="item-meta">
             <div class="meta-col">
@@ -1106,7 +1119,7 @@
           </div>
           <h2 class="item-title">Dark Mocha</h2>
           <p class="item-desc">
-            Triple-shot espresso with 70% dark chocolate sauce, steamed milk, and a thin layer of mocha crema on top. No whipped cream — it would mask the bitterness we worked to calibrate. Rich, intense, and built for people who mean it. Best ordered hot.
+            Triple-shot espresso with <span class="mk-ul">70% dark chocolate sauce</span>, steamed milk, and a thin layer of mocha crema on top. No whipped cream — it would mask the bitterness we worked to calibrate. <strong>Rich, intense, and built for people who mean it.</strong> <span class="mk">Best ordered hot.</span>
           </p>
           <div class="item-meta">
             <div class="meta-col">
@@ -1141,7 +1154,7 @@
           </div>
           <h2 class="item-title">Ube (Purple Yam) Latte</h2>
           <p class="item-desc">
-            House-made ube halaya blended with steamed milk and a single shot of espresso. The purple yam is sourced locally — cooked down in-house, never from powder. Subtly sweet with a natural creaminess that doesn't need sugar added. The colour is real.
+            <span class="mk-ul">House-made ube halaya</span> blended with steamed milk and a single shot of espresso. The purple yam is <strong>sourced locally — cooked down in-house, never from powder.</strong> Subtly sweet with a natural creaminess that doesn't need sugar added. <span class="mk">The colour is real.</span>
           </p>
           <div class="item-meta">
             <div class="meta-col">
@@ -1216,15 +1229,15 @@
       <div class="about-grid">
         <div class="about-prose">
           <p>
-            Kanoffee started with one question: why does <strong>specialty coffee</strong> have to feel pretentious? We wanted a place where the coffee is taken seriously but the experience isn't — somewhere you sit for two hours, order twice, and leave knowing exactly what you drank.
+            Kanoffee started with one question: why does <span class="mk-ul">specialty coffee</span> have to feel pretentious? We wanted a place where the coffee is taken seriously but the experience isn't — somewhere you sit for two hours, order twice, and <strong>leave knowing exactly what you drank.</strong>
           </p>
           <p>
-            Every bean on the menu is single-origin. Every espresso is dialled fresh at open. The food was built around the coffee — not the other way around. Hollandaise from scratch, batter rested, tiramisu set overnight. Short menu, every item worth ordering.
+            Every bean on the menu is <span class="mk">single-origin.</span> Every espresso is <span class="mk-ul">dialled fresh at open.</span> The food was built around the coffee — not the other way around. <strong>Hollandaise from scratch, batter rested, tiramisu set overnight.</strong> Short menu, every item worth ordering.
           </p>
           <p>
-            Opened in 2022. Iterated since. The current space — white marble, warm timber, clean lines — is version three of the fit-out. First two were close but not right. This one is.
+            Opened in <span class="mk">2022.</span> Iterated since. The current space — white marble, warm timber, clean lines — is version three of the fit-out. First two were close but not right. <strong>This one is.</strong>
           </p>
-          <p class="about-sig">— Brewed well, served better.</p>
+          <p class="about-sig">— <span class="mk">Brewed well, served better.</span></p>
         </div>
 
         <div class="about-side">
@@ -1305,10 +1318,10 @@
               </div>
               <span class="cr-arrow">→</span>
             </a>
-            <a class="contact-row" href="mailto:hello@kanoffee.coffee">
+            <a class="contact-row" href="mailto:kanoffeeincorporated@gmail.com">
               <div class="cr-left">
                 <span class="cr-platform">Email</span>
-                <span class="cr-name">hello@kanoffee.coffee</span>
+                <span class="cr-name">kanoffeeincorporated@gmail.com</span>
               </div>
               <span class="cr-arrow">→</span>
             </a>
