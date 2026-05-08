@@ -832,45 +832,100 @@
 
     /* Phone — 480px */
     @media (max-width: 480px) {
-      .container  { padding: 0 16px; }
+      body { overflow-x: hidden; }
+      .container { padding: 0 16px; }
 
-      /* Nav — keep logo + Menu + Visit + toggle only */
-      .nav-links  { gap: 12px; }
-      .nav-links a[href="#gallery"],
-      .nav-links a[href="#about"] { display: none; }
-
-      /* Title strip — show only brand + status */
+      /* ── Title strip ── */
       .title-strip .ts-cell:nth-child(2),
       .title-strip .ts-cell:nth-child(3),
       .title-strip .ts-cell:nth-child(4) { display: none; }
+      .ts-cell { padding: 6px 14px; }
 
-      /* Hero */
-      .hero         { min-height: 65vh; }
-      .hero-content { padding: 32px 0; }
-      .hero-stats   { flex-direction: column; }
-      .stat-cell    { flex: none; width: 100%; padding: 12px 18px; }
+      /* ── Nav ── */
+      .nav-row   { padding: 10px 0; }
+      .logo-img  { width: 30px !important; height: 30px !important; }
+      .logo      { font-size: 13px; gap: 6px; }
+      .nav-links { gap: 10px; }
+      .nav-links a[href="#gallery"],
+      .nav-links a[href="#about"] { display: none; }
+      .nav-links a { font-size: 10px; }
+      .theme-btn  { font-size: 9px; padding: 4px 8px; }
 
-      /* Gallery — single column */
-      .gallery-grid {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
+      /* ── Hero ── */
+      .hero         { min-height: 60vh; }
+      .hero-content { padding: 28px 0 36px; }
+      .hero-hl      { font-size: clamp(28px, 8vw, 40px); margin-bottom: 14px; }
+      .hero-sub     { font-size: 12px; line-height: 1.6; }
+      .hero-eyebrow { margin-bottom: 20px; }
+      .hero-stats   { flex-direction: column; margin-top: 28px; width: 100%; }
+      .stat-cell    {
+        width: 100%;
+        padding: 10px 16px;
+        border-right: none;
+        border-bottom: 1px solid rgba(239,230,210,0.18);
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
       }
-      .gc-feature, .gc-mid,
-      .gc-wide-left, .gc-wide-right { grid-column: 1; }
-      .gc-feature   { aspect-ratio: 4/3; }
-      .gallery-cell { aspect-ratio: 4/3; }
+      .stat-cell:last-child { border-bottom: none; }
+      .stat-val { font-size: 16px; }
+      .stat-lbl { font-size: 8px; }
 
-      /* Menu */
-      .menu-entry { gap: 0; }
-      .item-title { font-size: 16px; }
+      /* ── Section headers ── */
+      .sec-hd   { padding: 28px 0 16px; }
+      .sec-lbl  { font-size: 9px; }
 
-      /* Visit */
-      .visit-cell { padding: 20px 16px; }
-      .hours-row  { padding: 10px 0; }
+      /* ── Menu ── */
+      .menu-entry  { padding: 20px 0 20px 10px; gap: 0; }
+      .item-ref    { font-size: 9px; }
+      .item-status-top { font-size: 9px; }
+      .item-title  { font-size: 15px; }
+      .item-desc   { font-size: 13px; line-height: 1.65; }
+      .menu-img    { aspect-ratio: 4/3; }
+      .item-meta   { grid-template-columns: repeat(2, 1fr); gap: 10px 0; }
+      .meta-col + .meta-col:nth-child(odd) { border-left: none; padding-left: 0; }
+      .m-lbl { font-size: 7px; }
+      .m-val { font-size: 10px; }
 
-      /* Footer */
+      /* ── Gallery ── */
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 160px 140px 140px 140px;
+      }
+      .gc-feature    { grid-column: 1 / 3; grid-row: 1; aspect-ratio: unset; }
+      .gc-mid        { grid-column: 1 / 3; }
+      .gc-wide-left  { grid-column: 1; }
+      .gc-wide-right { grid-column: 2; }
+      .gallery-cell::before { font-size: 9px; top: 8px; left: 10px; }
+      .gallery-cell::after  { font-size: 10px; padding-bottom: 10px; }
+
+      /* ── About ── */
+      .about       { padding-bottom: 40px; }
+      .about-prose p { font-size: 14px; line-height: 1.65; }
+      .tag         { font-size: 10px; padding: 3px 8px; }
+
+      /* ── Visit ── */
+      .visit       { padding-bottom: 40px; }
+      .visit-cell  { padding: 20px 16px; }
+      .vc-label    { font-size: 8px; }
+      .hours-day,
+      .hours-time  { font-size: 10px; }
+      .hours-row   { padding: 9px 0; }
+      .cr-platform { font-size: 8px; }
+      .cr-name     { font-size: 12px; }
+
+      /* ── Footer ── */
       .footer-strip .fs-cell:nth-child(3),
       .footer-strip .fs-cell:nth-child(4) { display: none; }
+      .fs-cell { padding: 8px 14px; }
+    }
+
+    /* Very small phones — 360px */
+    @media (max-width: 360px) {
+      .logo { font-size: 12px; }
+      .logo-img { width: 26px !important; height: 26px !important; }
+      .nav-links a[href="#visit"] { display: none; }
+      .hero-hl { font-size: clamp(24px, 8vw, 32px); }
     }
   </style>
 </head>
