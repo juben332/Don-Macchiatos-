@@ -653,8 +653,9 @@
     }
 
     .visit-cell {
-      padding: 32px;
+      padding: 40px;
       border-right: 1px solid var(--border-mid);
+      position: relative;
     }
 
     .visit-cell:last-child { border-right: none; }
@@ -662,77 +663,128 @@
     .vc-label {
       font-family: var(--font-mono);
       font-size: 9px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--fg-dim);
       border-bottom: 1px solid var(--border);
-      padding-bottom: 10px;
-      margin-bottom: 18px;
+      padding-bottom: 14px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
+    /* Pulsing open badge */
+    .vc-open-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      color: var(--copper);
+      border: 1px solid var(--copper-dim);
+      padding: 3px 9px;
+    }
+
+    .vc-open-badge::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      background: var(--copper);
+      border-radius: 50%;
+      flex-shrink: 0;
+      animation: vcPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes vcPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.35; transform: scale(0.75); }
+    }
+
+    /* Hours */
     .hours-row {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      padding: 8px 0;
+      align-items: center;
+      padding: 14px 12px;
       border-bottom: 1px solid var(--border);
+      border-left: 2px solid transparent;
+      margin-left: -12px;
+      transition: border-left-color 0.22s ease, background 0.20s ease;
     }
 
     .hours-row:last-child { border-bottom: none; }
 
+    .hours-row:hover {
+      border-left-color: var(--copper);
+      background: var(--card-hover);
+    }
+
     .hours-day {
       font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.04em;
+      font-size: 13px;
+      letter-spacing: 0.03em;
       color: var(--fg-muted);
     }
 
     .hours-time {
       font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.03em;
-      color: var(--fg-dim);
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--fg);
     }
 
+    /* Contact */
     .contact-links { display: flex; flex-direction: column; }
 
     .contact-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 0;
+      padding: 16px 12px;
       border-bottom: 1px solid var(--border);
-      transition: background 0.18s ease;
+      border-left: 2px solid transparent;
+      margin-left: -12px;
+      transition: border-left-color 0.22s ease, background 0.20s ease;
     }
 
     .contact-row:last-child { border-bottom: none; }
-    .contact-row:hover .cr-name { color: var(--copper); }
-    .contact-row:hover .cr-arrow { color: var(--copper); transform: translateX(5px); }
 
-    .cr-left { display: flex; flex-direction: column; gap: 2px; }
+    .contact-row:hover {
+      border-left-color: var(--copper);
+      background: var(--card-hover);
+    }
+
+    .contact-row:hover .cr-name { color: var(--copper); }
+    .contact-row:hover .cr-arrow { color: var(--copper); transform: translateX(6px); }
+
+    .cr-left { display: flex; flex-direction: column; gap: 4px; }
 
     .cr-platform {
       font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 0.12em;
+      font-size: 8px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--fg-dim);
     }
 
     .cr-name {
       font-family: var(--font-mono);
-      font-size: 13px;
-      letter-spacing: 0.02em;
+      font-size: 14px;
+      letter-spacing: 0.01em;
       color: var(--fg-muted);
       transition: color 0.20s ease;
     }
 
     .cr-arrow {
       font-family: var(--font-mono);
-      font-size: 14px;
+      font-size: 18px;
       color: var(--fg-dim);
       display: inline-block;
-      transition: color 0.20s ease, transform 0.22s ease;
+      transition: color 0.20s ease, transform 0.24s ease;
+      flex-shrink: 0;
     }
 
     /* ─── Footer ─────────────────────────────────────── */
@@ -841,7 +893,10 @@
       /* About / Visit */
       .about  { padding-bottom: 48px; }
       .visit  { padding-bottom: 48px; }
-      .visit-cell { padding: 24px; }
+      .visit-cell { padding: 28px 20px; }
+      .hours-time { font-size: 14px; }
+      .hours-day  { font-size: 12px; }
+      .cr-name    { font-size: 13px; }
 
       /* Footer */
       .fs-cell:nth-child(3) { display: none; }
@@ -922,14 +977,16 @@
       .tag         { font-size: 10px; padding: 3px 8px; }
 
       /* ── Visit ── */
-      .visit       { padding-bottom: 40px; }
-      .visit-cell  { padding: 20px 16px; }
-      .vc-label    { font-size: 8px; }
-      .hours-day,
-      .hours-time  { font-size: 10px; }
-      .hours-row   { padding: 9px 0; }
-      .cr-platform { font-size: 8px; }
-      .cr-name     { font-size: 12px; }
+      .visit        { padding-bottom: 40px; }
+      .visit-cell   { padding: 20px 14px; }
+      .vc-label     { font-size: 8px; flex-wrap: wrap; gap: 6px; }
+      .hours-day    { font-size: 11px; }
+      .hours-time   { font-size: 13px; }
+      .hours-row    { padding: 11px 10px; margin-left: -10px; }
+      .contact-row  { padding: 12px 10px; margin-left: -10px; }
+      .cr-platform  { font-size: 8px; }
+      .cr-name      { font-size: 12px; }
+      .cr-arrow     { font-size: 14px; }
 
       /* ── Footer ── */
       .footer-strip .fs-cell:nth-child(3),
@@ -1286,7 +1343,10 @@
 
       <div class="visit-grid">
         <div class="visit-cell">
-          <div class="vc-label">Hours of operation</div>
+          <div class="vc-label">
+            Hours of operation
+            <span class="vc-open-badge">Open daily</span>
+          </div>
           <div class="hours-row">
             <span class="hours-day">Monday — Friday</span>
             <span class="hours-time">7:00 am – 9:00 pm</span>
@@ -1301,7 +1361,7 @@
           </div>
           <div class="hours-row">
             <span class="hours-day">Kitchen closes</span>
-            <span class="hours-time" style="color:var(--copper);">3:00 pm daily</span>
+            <span class="hours-time" style="color:var(--copper);font-size:16px;">3:00 pm daily</span>
           </div>
         </div>
 
