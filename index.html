@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
   <style>
     /* ─── Reset ─────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -476,108 +477,180 @@
       filter: grayscale(0%);
     }
 
-    /* ─── Gallery ────────────────────────────────────── */
-    .gallery { border-bottom: 1px solid var(--border); }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: 300px 220px 270px;
-      gap: 2px;
-      background: var(--border-mid);
-    }
-
-    .gallery-cell {
-      overflow: hidden;
-      background: var(--bg);
+    /* ─── Gallery (scrollytelling) ──────────────────── */
+    .gallery {
       position: relative;
-      cursor: pointer;
-      z-index: 0;
-      transition: z-index 0s 0.3s;
+      background: #0A0604;
     }
 
-    .gallery-cell:hover { z-index: 1; transition: z-index 0s; }
-
-    /* Collage layout */
-    .gc-feature    { grid-column: 1 / 3; grid-row: 1 / 3; }
-    .gc-mid        { grid-column: 3 / 5; }
-    .gc-wide-left  { grid-column: 1 / 3; }
-    .gc-wide-right { grid-column: 3 / 5; }
-
-    .gallery-cell img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.60s cubic-bezier(0.22,1,0.36,1), filter 0.40s ease;
-      filter: grayscale(12%) brightness(0.90);
+    .gallery__scroller {
+      position: relative;
+      height: 400vh;
+      background: #0A0604;
     }
 
-    .gallery-cell:hover img {
-      transform: scale(1.07);
-      filter: grayscale(0%) brightness(1.02);
+    .gallery__sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
 
-    /* Always-visible index tag */
-    .gallery-cell::before {
-      content: attr(data-index);
+    .gallery__canvas {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .gallery__loader {
       position: absolute;
-      top: 14px;
-      left: 16px;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      background: #0A0604;
+      z-index: 10;
+      transition: opacity 0.5s ease;
+    }
+
+    .gallery__loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .gallery__spinner {
+      width: 36px;
+      height: 36px;
+      border: 2px solid rgba(201,167,124,0.20);
+      border-top-color: #C9A77C;
+      border-radius: 50%;
+      animation: gallery-spin 0.8s linear infinite;
+    }
+
+    @keyframes gallery-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .gallery__progress-track {
+      width: 160px;
+      height: 2px;
+      background: rgba(201,167,124,0.18);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .gallery__progress-bar {
+      height: 100%;
+      width: 0%;
+      background: #C9A77C;
+      border-radius: 2px;
+      transition: width 0.1s linear;
+    }
+
+    .gallery__loader-lbl {
       font-family: var(--font-mono);
       font-size: 10px;
       letter-spacing: 0.12em;
-      color: rgba(239, 230, 210, 0.45);
-      z-index: 3;
-      transition: color 0.25s ease;
-      pointer-events: none;
+      color: rgba(201,167,124,0.55);
     }
 
-    .gallery-cell:hover::before { color: rgba(239, 230, 210, 0.90); }
-
-    /* Hover gradient + label */
-    .gallery-cell::after {
-      content: attr(data-label);
+    .gallery__scroll-hint {
       position: absolute;
-      inset: 0;
-      padding: 50% 18px 18px;
-      background: linear-gradient(
-        to top,
-        rgba(26, 24, 22, 0.82) 0%,
-        rgba(26, 24, 22, 0.20) 45%,
-        transparent 70%
-      );
-      display: flex;
-      align-items: flex-end;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
       font-family: var(--font-mono);
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      color: rgba(239, 230, 210, 0.95);
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.32s ease, transform 0.32s ease;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: rgba(201,167,124,0.60);
       pointer-events: none;
-      z-index: 2;
+      z-index: 5;
+      animation: gallery-nudge 1.8s ease-in-out infinite;
     }
 
-    .gallery-cell:hover::after {
-      opacity: 1;
-      transform: translateY(0);
+    @keyframes gallery-nudge {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
     }
 
-    /* Copper inset border on hover */
-    .gallery-cell:hover {
-      box-shadow: inset 0 0 0 2px var(--copper);
+    .gallery__beat {
+      position: absolute;
+      z-index: 5;
+      pointer-events: none;
+      opacity: 0;
     }
 
-    @media (max-width: 960px) {
-      .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: 260px 220px 220px 220px;
+    .gallery__beat-head {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 700;
+      color: #EFE6D2;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    .gallery__beat-sub {
+      font-family: var(--font-mono);
+      font-size: clamp(11px, 1.2vw, 14px);
+      letter-spacing: 0.10em;
+      color: rgba(239,230,210,0.55);
+      line-height: 1.6;
+    }
+
+    .gallery__beat--a {
+      text-align: center;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, calc(-50% + 20px));
+      width: min(600px, 80vw);
+    }
+
+    .gallery__beat--b {
+      text-align: left;
+      left: clamp(24px, 6vw, 80px);
+      top: 50%;
+      transform: translateY(calc(-50% + 20px));
+      width: min(500px, 70vw);
+    }
+
+    .gallery__beat--c {
+      text-align: right;
+      right: clamp(24px, 6vw, 80px);
+      top: 50%;
+      transform: translateY(calc(-50% + 20px));
+      width: min(500px, 70vw);
+    }
+
+    .gallery__beat--c .gallery__beat-head {
+      font-style: italic;
+    }
+
+    .gallery__beat--d {
+      text-align: center;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, calc(-50% + 20px));
+      width: min(600px, 80vw);
+    }
+
+    @media (max-width: 640px) {
+      .gallery__beat--b {
+        left: 20px;
+        width: auto;
+        right: 20px;
+        text-align: center;
       }
-      .gc-feature    { grid-column: 1 / 3; grid-row: 1; }
-      .gc-mid        { grid-column: 1 / 3; }
-      .gc-wide-left  { grid-column: 1; }
-      .gc-wide-right { grid-column: 2; }
+      .gallery__beat--c {
+        right: 20px;
+        left: 20px;
+        width: auto;
+        text-align: center;
+      }
     }
 
     /* ─── About ──────────────────────────────────────── */
@@ -889,16 +962,6 @@
       .meta-col + .meta-col:nth-child(odd) { border-left: none; padding-left: 0; }
       .menu-entry { padding: 24px 0 24px 12px; }
 
-      /* Gallery */
-      .gallery-grid {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 220px 180px 180px 180px;
-      }
-      .gc-feature    { grid-column: 1 / 3; grid-row: 1; }
-      .gc-mid        { grid-column: 1 / 3; }
-      .gc-wide-left  { grid-column: 1; }
-      .gc-wide-right { grid-column: 2; }
-
       /* About / Visit */
       .about  { padding-bottom: 48px; }
       .visit  { padding-bottom: 48px; }
@@ -967,18 +1030,6 @@
       .meta-col + .meta-col:nth-child(odd) { border-left: none; padding-left: 0; }
       .m-lbl { font-size: 7px; }
       .m-val { font-size: 10px; }
-
-      /* ── Gallery ── */
-      .gallery-grid {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 160px 140px 140px 140px;
-      }
-      .gc-feature    { grid-column: 1 / 3; grid-row: 1; aspect-ratio: unset; }
-      .gc-mid        { grid-column: 1 / 3; }
-      .gc-wide-left  { grid-column: 1; }
-      .gc-wide-right { grid-column: 2; }
-      .gallery-cell::before { font-size: 9px; top: 8px; left: 10px; }
-      .gallery-cell::after  { font-size: 10px; padding-bottom: 10px; }
 
       /* ── About ── */
       .about       { padding-bottom: 40px; }
@@ -1252,34 +1303,43 @@
 
   <!-- ══ Gallery ════════════════════════════════════ -->
   <section class="gallery" id="gallery">
-    <div class="container">
-      <div class="sec-hd">
-        <span class="sec-lbl">Sec. 02 — Gallery — DON MACCHIATOS in frame</span>
-        <div class="sec-rule"></div>
-      </div>
-    </div>
+    <div class="gallery__scroller" id="galleryScroller">
+      <div class="gallery__sticky" id="gallerySticky">
 
-    <div class="gallery-grid">
-      <div class="gallery-cell gc-feature" data-index="01" data-label="DON MACCHIATOS in frame">
-        <img src="images/gallery.jpg"  alt="gallery" loading="lazy">
-      </div>
-      <div class="gallery-cell" data-index="02" data-label="Behind the bar">
-        <img src="images/gallery1.jpg" alt="gallery1" loading="lazy">
-      </div>
-      <div class="gallery-cell" data-index="03" data-label="Craft &amp; detail">
-        <img src="images/gallery2.jpg" alt="gallery2" loading="lazy">
-      </div>
-      <div class="gallery-cell gc-mid" data-index="04" data-label="Our space">
-        <img src="images/gallery3.jpg" alt="gallery3" loading="lazy">
-      </div>
-      <div class="gallery-cell gc-wide-left" data-index="05" data-label="Every cup matters">
-        <img src="images/gallery4.jpg" alt="gallery4" loading="lazy">
-      </div>
-      <div class="gallery-cell gc-wide-right" data-index="06" data-label="Dialled in">
-        <img src="images/gallery5.jpg" alt="gallery5" loading="lazy">
+        <canvas class="gallery__canvas" id="galleryCanvas"></canvas>
+
+        <div class="gallery__loader" id="galleryLoader">
+          <div class="gallery__spinner"></div>
+          <div class="gallery__progress-track">
+            <div class="gallery__progress-bar" id="galleryProgressBar"></div>
+          </div>
+          <span class="gallery__loader-lbl" id="galleryLoaderLbl">Loading — 0 / 259</span>
+        </div>
+
+        <div class="gallery__scroll-hint" id="galleryScrollHint">↓ Scroll</div>
+
+        <div class="gallery__beat gallery__beat--a" id="beatA">
+          <div class="gallery__beat-head">Marked by craft.</div>
+          <div class="gallery__beat-sub">Every cup, signed by hand.</div>
+        </div>
+
+        <div class="gallery__beat gallery__beat--b" id="beatB">
+          <div class="gallery__beat-head">From bean to brew.</div>
+          <div class="gallery__beat-sub">Single-origin. Ground to order.</div>
+        </div>
+
+        <div class="gallery__beat gallery__beat--c" id="beatC">
+          <div class="gallery__beat-head">La crema.</div>
+          <div class="gallery__beat-sub">Twenty-five seconds. Nine bars.<br>The shot that defines us.</div>
+        </div>
+
+        <div class="gallery__beat gallery__beat--d" id="beatD">
+          <div class="gallery__beat-head">The signature mark.</div>
+          <div class="gallery__beat-sub">Macchiato — Italian for marked.</div>
+        </div>
+
       </div>
     </div>
-    <div style="height:72px;"></div>
   </section>
 
 
@@ -1387,7 +1447,7 @@
               </div>
               <span class="cr-arrow">→</span>
             </a>
-            <a class="contact-row" href="mailto:kanoffeeincorporated@gmail.com">
+            <a class="contact-row" href="mailto:donmacciatos@gmail.com">
               <div class="cr-left">
                 <span class="cr-platform">Email</span>
                 <span class="cr-name">kanoffeeincorporated@gmail.com</span>
@@ -1451,6 +1511,163 @@
       html.setAttribute('data-theme', isDark ? 'light' : 'dark');
       btn.textContent = isDark ? '◐ Dark' : '◐ Light';
     }
+
+    /* ─── Scrollytelling Canvas Animation ─────────────── */
+    (function () {
+      'use strict';
+
+      var TOTAL_FRAMES = 259;
+      var FRAME_DIR    = 'Don/';
+      var LERP_FACTOR  = 0.12;
+
+      var BEATS = [
+        { id: 'beatA', start: 0.00, peakIn: 0.05, peakOut: 0.15, end: 0.20 },
+        { id: 'beatB', start: 0.25, peakIn: 0.30, peakOut: 0.40, end: 0.45 },
+        { id: 'beatC', start: 0.50, peakIn: 0.55, peakOut: 0.65, end: 0.70 },
+        { id: 'beatD', start: 0.75, peakIn: 0.80, peakOut: 0.90, end: 0.95 },
+      ];
+
+      var scroller    = document.getElementById('galleryScroller');
+      var sticky      = document.getElementById('gallerySticky');
+      var canvas      = document.getElementById('galleryCanvas');
+      var loader      = document.getElementById('galleryLoader');
+      var progressBar = document.getElementById('galleryProgressBar');
+      var loaderLbl   = document.getElementById('galleryLoaderLbl');
+      var scrollHint  = document.getElementById('galleryScrollHint');
+      var ctx         = canvas.getContext('2d');
+
+      var beatEls = BEATS.map(function (b) {
+        return Object.assign({}, b, { el: document.getElementById(b.id) });
+      });
+
+      var frames       = new Array(TOTAL_FRAMES).fill(null);
+      var done         = 0;
+      var ready        = false;
+      var targetFrame  = 0;
+      var currentFrame = 0;
+
+      function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+      function lerp(a, b, t)    { return a + (b - a) * t; }
+      function remap(v, e0, e1) { return clamp((v - e0) / (e1 - e0), 0, 1); }
+      function ease(t)          { return t < 0.5 ? 2*t*t : -1 + (4 - 2*t) * t; }
+
+      function resizeCanvas() {
+        var src = frames[0];
+        if (!src) return;
+        var W = sticky.clientWidth;
+        var H = sticky.clientHeight;
+        var ratio = src.naturalWidth / src.naturalHeight;
+        var w = W, h = W / ratio;
+        if (h > H) { h = H; w = H * ratio; }
+        canvas.width  = Math.round(w);
+        canvas.height = Math.round(h);
+      }
+
+      function drawFrame(index) {
+        var i   = clamp(Math.round(index), 0, TOTAL_FRAMES - 1);
+        var img = frames[i];
+        if (!img || !img.complete) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      }
+
+      function getScrollProgress() {
+        var rect       = scroller.getBoundingClientRect();
+        var sectionTop = window.scrollY + rect.top;
+        var sectionH   = scroller.offsetHeight;
+        var winH       = window.innerHeight;
+        return clamp((window.scrollY - sectionTop) / (sectionH - winH), 0, 1);
+      }
+
+      function updateBeats(progress) {
+        beatEls.forEach(function (b) {
+          var opacity = 0, ty = 20;
+          if (progress >= b.start && progress <= b.end) {
+            if (progress < b.peakIn) {
+              var t = ease(remap(progress, b.start, b.peakIn));
+              opacity = t;
+              ty      = 20 * (1 - t);
+            } else if (progress < b.peakOut) {
+              opacity = 1;
+              ty      = 0;
+            } else {
+              var t = ease(remap(progress, b.peakOut, b.end));
+              opacity = 1 - t;
+              ty      = -20 * t;
+            }
+          }
+          b.el.style.opacity = opacity;
+          if (b.id === 'beatA' || b.id === 'beatD') {
+            b.el.style.transform = 'translate(-50%, calc(-50% + ' + ty + 'px))';
+          } else {
+            b.el.style.transform = 'translateY(calc(-50% + ' + ty + 'px))';
+          }
+        });
+      }
+
+      function updateScrollHint(progress) {
+        scrollHint.style.opacity = 1 - remap(progress, 0, 0.10);
+      }
+
+      function tick() {
+        requestAnimationFrame(tick);
+        if (!ready) return;
+        currentFrame = lerp(currentFrame, targetFrame, LERP_FACTOR);
+        drawFrame(currentFrame);
+        var progress = getScrollProgress();
+        updateBeats(progress);
+        updateScrollHint(progress);
+      }
+
+      function onScroll() {
+        if (!ready) return;
+        targetFrame = Math.round(getScrollProgress() * (TOTAL_FRAMES - 1));
+      }
+
+      function onAllLoaded() {
+        ready = true;
+        resizeCanvas();
+        drawFrame(0);
+        loader.classList.add('hidden');
+        loader.addEventListener('transitionend', function () {
+          if (loader.parentNode) loader.parentNode.removeChild(loader);
+        }, { once: true });
+        requestAnimationFrame(tick);
+        onScroll();
+      }
+
+      function padded(n) {
+        var s = String(n);
+        while (s.length < 3) s = '0' + s;
+        return s;
+      }
+
+      function preloadFrames() {
+        for (var i = 0; i < TOTAL_FRAMES; i++) {
+          (function (idx) {
+            var img = new Image();
+            img.src = FRAME_DIR + 'ezgif-frame-' + padded(idx + 1) + '.png';
+            img.onload = img.onerror = function () {
+              frames[idx] = img;
+              done++;
+              var pct = Math.round((done / TOTAL_FRAMES) * 100);
+              progressBar.style.width = pct + '%';
+              loaderLbl.textContent   = 'Loading — ' + done + ' / ' + TOTAL_FRAMES;
+              if (done === TOTAL_FRAMES) onAllLoaded();
+            };
+          })(i);
+        }
+      }
+
+      window.addEventListener('resize', function () {
+        resizeCanvas();
+        drawFrame(currentFrame);
+      });
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      preloadFrames();
+    })();
   </script>
 
 </body>
