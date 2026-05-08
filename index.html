@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Spot — Specialty Coffee</title>
+  <title>Kanoffee — Specialty Coffee</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -72,6 +72,7 @@
     .logo {
       display: inline-flex;
       align-items: center;
+      gap: 8px;
       font-family: var(--font-mono);
       font-weight: 500;
       font-size: 17px;
@@ -80,22 +81,17 @@
       line-height: 1;
     }
 
-    .logo-dot {
-      display: inline-block;
-      width: 7px;
-      height: 7px;
-      background: var(--copper);
-      border-radius: 50%;
-      margin: 0 1.5px;
-      position: relative;
-      top: -0.5px;
+    .logo-img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
       flex-shrink: 0;
-      transition: box-shadow 0.30s ease, transform 0.30s ease;
+      transition: transform 0.30s ease, opacity 0.30s ease;
     }
 
-    .logo:hover .logo-dot {
-      box-shadow: 0 0 0 2px var(--copper-dim), 0 0 12px rgba(184,92,32,0.5);
-      transform: scale(1.2);
+    .logo:hover .logo-img {
+      transform: scale(1.12);
+      opacity: 0.85;
     }
 
     /* ─── Title-block strip ──────────────────────────── */
@@ -211,7 +207,7 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background-image: url('images/BG.jpg');
+      background-image: url('images/Background.png');
       background-size: cover;
       background-position: center top;
       filter: brightness(0.40);
@@ -712,7 +708,7 @@
     <div class="title-strip">
       <div class="ts-cell">
         <span class="ts-lbl">Establishment</span>
-        <span class="ts-val">The Spot Specialty Coffee</span>
+        <span class="ts-val">Kanoffee</span>
       </div>
       <div class="ts-cell">
         <span class="ts-lbl">Type</span>
@@ -734,8 +730,9 @@
 
     <div class="container">
       <div class="nav-row">
-        <a href="#" class="logo" aria-label="The Spot — home">
-          The<span class="logo-dot"></span>Spot
+        <a href="#" class="logo" aria-label="Kanoffee — home">
+          <img src="images/logo.png" alt="Kanoffee logo" class="logo-img">
+          Kanoffee
         </a>
         <nav class="nav-links">
           <a href="#menu">Menu</a>
@@ -805,9 +802,9 @@
             <span class="item-ref">Item No. 001 — Espresso-based — Signature</span>
             <span class="item-status-top">available daily</span>
           </div>
-          <h2 class="item-title">The Spot Latte</h2>
+          <h2 class="item-title">The Kanoffee Latte</h2>
           <p class="item-desc">
-            Double shot of single-origin espresso pulled on a La Marzocco, finished with microfoam steamed to 65°C. Dialled fresh each morning — extraction sits between 27–30 seconds. The latte art isn't decoration; it's how we know the milk is right.
+            Double shot of single-origin espresso pulled on a La Marzocco, finished with microfoam steamed to 65°C. Dialled fresh each morning — extraction sits between 27–30 seconds. The latte art isn't decoration; it's how we know the milk is right. This is Kanoffee.
           </p>
           <div class="item-meta">
             <div class="meta-col">
@@ -829,7 +826,7 @@
           </div>
         </div>
         <div class="menu-img">
-          <img src="images/gallery3.jpg" alt="The Spot Latte" loading="lazy">
+          <img src="images/img.jpg" alt="Kanoffee Latte" loading="lazy">
         </div>
       </article>
 
@@ -864,7 +861,7 @@
           </div>
         </div>
         <div class="menu-img">
-          <img src="images/gallery7.jpg" alt="Mushroom Eggs Benedict" loading="lazy">
+          <img src="images/Background.png" alt="Mushroom Eggs Benedict" loading="lazy">
         </div>
       </article>
 
@@ -899,7 +896,7 @@
           </div>
         </div>
         <div class="menu-img">
-          <img src="images/gallery1.jpg" alt="House tiramisu" loading="lazy">
+          <img src="images/img.jpg" alt="House tiramisu" loading="lazy">
         </div>
       </article>
 
@@ -934,7 +931,7 @@
           </div>
         </div>
         <div class="menu-img">
-          <img src="images/gallery2.jpg" alt="Fruit pancake stack" loading="lazy">
+          <img src="images/Background.png" alt="Fruit pancake stack" loading="lazy">
         </div>
       </article>
 
@@ -946,29 +943,29 @@
   <section class="gallery" id="gallery">
     <div class="container">
       <div class="sec-hd">
-        <span class="sec-lbl">Sec. 02 — Gallery — The Spot in frame</span>
+        <span class="sec-lbl">Sec. 02 — Gallery — Kanoffee in frame</span>
         <div class="sec-rule"></div>
       </div>
     </div>
 
     <div class="gallery-grid">
       <div class="gallery-cell">
-        <img src="images/gallery.jpg"  alt="The Spot — takeout delivery" loading="lazy">
+        <img src="images/img.jpg"        alt="Kanoffee — coffee served" loading="lazy">
       </div>
       <div class="gallery-cell">
-        <img src="images/gallery4.jpg" alt="Reading with a cappuccino" loading="lazy">
+        <img src="images/Background.png" alt="Kanoffee — interior" loading="lazy">
       </div>
       <div class="gallery-cell">
-        <img src="images/gallery6.jpg" alt="Latte art pour" loading="lazy">
+        <img src="images/img.jpg"        alt="Kanoffee — latte art" loading="lazy">
       </div>
       <div class="gallery-cell">
-        <img src="images/gallery5.jpg" alt="The Spot branded cup" loading="lazy">
+        <img src="images/Background.png" alt="Kanoffee — ambiance" loading="lazy">
       </div>
       <div class="gallery-cell">
-        <img src="images/gallery8.jpg" alt="Eggs benedict with iced coffee" loading="lazy">
+        <img src="images/img.jpg"        alt="Kanoffee — brewed cup" loading="lazy">
       </div>
       <div class="gallery-cell">
-        <img src="images/BG1.png"      alt="The Spot counter interior" loading="lazy">
+        <img src="images/Background.png" alt="Kanoffee — counter" loading="lazy">
       </div>
     </div>
     <div style="height:72px;"></div>
@@ -987,7 +984,7 @@
       <div class="about-grid">
         <div class="about-prose">
           <p>
-            The Spot started with one question: why does <strong>specialty coffee</strong> have to feel pretentious? We wanted a place where the coffee is taken seriously but the experience isn't — somewhere you sit for two hours, order twice, and leave knowing exactly what you drank.
+            Kanoffee started with one question: why does <strong>specialty coffee</strong> have to feel pretentious? We wanted a place where the coffee is taken seriously but the experience isn't — somewhere you sit for two hours, order twice, and leave knowing exactly what you drank.
           </p>
           <p>
             Every bean on the menu is single-origin. Every espresso is dialled fresh at open. The food was built around the coffee — not the other way around. Hollandaise from scratch, batter rested, tiramisu set overnight. Short menu, every item worth ordering.
@@ -1073,24 +1070,24 @@
               </div>
               <span class="cr-arrow">→</span>
             </div>
-            <a class="contact-row" href="mailto:hello@thespot.coffee">
+            <a class="contact-row" href="mailto:hello@kanoffee.coffee">
               <div class="cr-left">
                 <span class="cr-platform">Email</span>
-                <span class="cr-name">hello@thespot.coffee</span>
+                <span class="cr-name">hello@kanoffee.coffee</span>
               </div>
               <span class="cr-arrow">→</span>
             </a>
             <a class="contact-row" href="https://instagram.com" target="_blank" rel="noopener noreferrer">
               <div class="cr-left">
                 <span class="cr-platform">Instagram</span>
-                <span class="cr-name">@thespot.coffee</span>
+                <span class="cr-name">@kanoffee.coffee</span>
               </div>
               <span class="cr-arrow">→</span>
             </a>
             <a class="contact-row" href="https://facebook.com" target="_blank" rel="noopener noreferrer">
               <div class="cr-left">
                 <span class="cr-platform">Facebook</span>
-                <span class="cr-name">The Spot Specialty Coffee</span>
+                <span class="cr-name">Kanoffee</span>
               </div>
               <span class="cr-arrow">→</span>
             </a>
@@ -1106,8 +1103,9 @@
   <footer>
     <div class="footer-strip">
       <div class="fs-cell">
-        <a href="#" class="logo" style="font-size:13px;" aria-label="The Spot — back to top">
-          The<span class="logo-dot" style="width:6px;height:6px;"></span>Spot
+        <a href="#" class="logo" style="font-size:13px;" aria-label="Kanoffee — back to top">
+          <img src="images/logo.png" alt="Kanoffee logo" class="logo-img" style="width:22px;height:22px;">
+          Kanoffee
         </a>
       </div>
       <div class="fs-cell">
@@ -1118,7 +1116,7 @@
         <span class="fs-val">Brewed well, served better.</span>
       </div>
       <div class="fs-cell">
-        <span class="fs-lbl">© 2026 The Spot Specialty Coffee</span>
+        <span class="fs-lbl">© 2026 Kanoffee</span>
       </div>
     </div>
   </footer>
