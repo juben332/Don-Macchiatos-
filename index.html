@@ -1558,7 +1558,14 @@
         var H = sticky.clientHeight;
         var ratio = src.naturalWidth / src.naturalHeight;
         var w = W, h = W / ratio;
-        if (h > H) { h = H; w = H * ratio; }
+        if (h > H) {
+          if (W <= 500) {
+            // cover: fill full width on mobile, clip overflow vertically
+            h = W / ratio;
+          } else {
+            h = H; w = H * ratio;
+          }
+        }
         canvas.width  = Math.round(w);
         canvas.height = Math.round(h);
       }
