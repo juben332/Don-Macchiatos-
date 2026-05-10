@@ -17,8 +17,8 @@
 
     /* ─── Tokens ─────────────────────────────────────── */
     :root {
-      --ink:        #1A1816;
-      --cream:      #EFE6D2;
+      --ink:        #0A0A0A;
+      --cream:      #F5F5F5;
       --accent:       #4A7BC8;
       --accent-hover: #7BA8DB;
       --accent-active:#2C4A85;
@@ -28,25 +28,25 @@
     }
 
     [data-theme="dark"] {
-      --bg:         #1A1816;
-      --fg:         #EFE6D2;
-      --fg-muted:   rgba(239, 230, 210, 0.48);
-      --fg-dim:     rgba(239, 230, 210, 0.24);
-      --border:     rgba(239, 230, 210, 0.35);
-      --border-mid: rgba(239, 230, 210, 0.55);
-      --card-hover: rgba(239, 230, 210, 0.028);
-      --dot-grid:   rgba(239, 230, 210, 0.032);
+      --bg:         #0A0A0A;
+      --fg:         #F0F0F0;
+      --fg-muted:   rgba(255, 255, 255, 0.65);
+      --fg-dim:     rgba(255, 255, 255, 0.45);
+      --border:     rgba(255, 255, 255, 0.18);
+      --border-mid: rgba(255, 255, 255, 0.32);
+      --card-hover: rgba(255, 255, 255, 0.05);
+      --dot-grid:   rgba(255, 255, 255, 0.06);
     }
 
     [data-theme="light"] {
-      --bg:         #EFE6D2;
-      --fg:         #1A1816;
-      --fg-muted:   rgba(26, 24, 22, 0.52);
-      --fg-dim:     rgba(26, 24, 22, 0.30);
-      --border:     rgba(26, 24, 22, 0.35);
-      --border-mid: rgba(26, 24, 22, 0.55);
-      --card-hover: rgba(26, 24, 22, 0.028);
-      --dot-grid:   rgba(26, 24, 22, 0.05);
+      --bg:         #FFFFFF;
+      --fg:         #0A0A0A;
+      --fg-muted:   rgba(0, 0, 0, 0.62);
+      --fg-dim:     rgba(0, 0, 0, 0.45);
+      --border:     rgba(0, 0, 0, 0.16);
+      --border-mid: rgba(0, 0, 0, 0.28);
+      --card-hover: rgba(0, 0, 0, 0.04);
+      --dot-grid:   rgba(0, 0, 0, 0.07);
     }
 
     /* ─── Base ───────────────────────────────────────── */
@@ -234,7 +234,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(26, 24, 22, 0.48);
+      background: rgba(0, 0, 0, 0.55);
       pointer-events: none;
       z-index: 0;
     }
@@ -280,7 +280,7 @@
       font-family: var(--font-mono);
       font-size: 13px;
       letter-spacing: 0.03em;
-      color: rgba(239, 230, 210, 0.60);
+      color: rgba(255, 255, 255, 0.65);
       line-height: 1.65;
       max-width: 520px;
     }
@@ -289,7 +289,7 @@
       display: flex;
       align-items: stretch;
       margin-top: 52px;
-      border: 1px solid rgba(239, 230, 210, 0.30);
+      border: 1px solid rgba(255, 255, 255, 0.22);
       width: fit-content;
     }
 
@@ -298,7 +298,7 @@
       flex-direction: column;
       gap: 4px;
       padding: 14px 28px;
-      border-right: 1px solid rgba(239, 230, 210, 0.30);
+      border-right: 1px solid rgba(255, 255, 255, 0.22);
     }
     .stat-cell:last-child { border-right: none; }
 
@@ -307,7 +307,7 @@
       font-weight: 500;
       font-size: 20px;
       letter-spacing: -0.02em;
-      color: #EFE6D2;
+      color: #F0F0F0;
       line-height: 1;
     }
 
@@ -318,7 +318,7 @@
       font-size: 9px;
       letter-spacing: 0.10em;
       text-transform: uppercase;
-      color: rgba(239, 230, 210, 0.40);
+      color: rgba(255, 255, 255, 0.50);
     }
 
     /* ─── Section header ─────────────────────────────── */
@@ -588,7 +588,7 @@
       font-family: 'Playfair Display', Georgia, serif;
       font-size: clamp(28px, 4vw, 52px);
       font-weight: 700;
-      color: #EFE6D2;
+      color: #F0F0F0;
       line-height: 1.15;
       margin-bottom: 10px;
     }
@@ -597,7 +597,7 @@
       font-family: var(--font-mono);
       font-size: clamp(11px, 1.2vw, 14px);
       letter-spacing: 0.10em;
-      color: rgba(239,230,210,0.55);
+      color: rgba(255,255,255,0.65);
       line-height: 1.6;
     }
 
@@ -949,7 +949,7 @@
       .stat-cell    {
         flex: 1 1 45%;
         border-right: none;
-        border-bottom: 1px solid rgba(239,230,210,0.20);
+        border-bottom: 1px solid rgba(255,255,255,0.20);
       }
       .stat-cell:last-child { border-bottom: none; }
 
@@ -1005,7 +1005,7 @@
         width: 100%;
         padding: 10px 16px;
         border-right: none;
-        border-bottom: 1px solid rgba(239,230,210,0.18);
+        border-bottom: 1px solid rgba(255,255,255,0.18);
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
@@ -1115,15 +1115,15 @@
 
         <div class="hero-eyebrow fu d1">
           <div class="copper-node"></div>
-          <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.05em;color:rgba(239,230,210,0.55);">
-            Specialty coffee — <strong style="color:rgba(239,230,210,0.85);font-weight:500;">brewed well, served better.</strong>
+          <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.05em;color:rgba(255,255,255,0.65);">
+            Specialty coffee — <strong style="color:rgba(255,255,255,0.92);font-weight:500;">brewed well, served better.</strong>
           </span>
         </div>
 
         <h1 class="hero-hl fu d2">Every cup,<br>dialled in.</h1>
 
         <p class="hero-sub fu d3">
-          Specialty coffee and all-day food — <strong style="color:rgba(239,230,210,0.85);font-weight:500;">sourced carefully, calibrated daily,</strong>
+          Specialty coffee and all-day food — <strong style="color:rgba(255,255,255,0.92);font-weight:500;">sourced carefully, calibrated daily,</strong>
           served without the theatre.
         </p>
 
