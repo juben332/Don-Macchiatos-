@@ -176,13 +176,7 @@
 
     .nav-links a::after {
       content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--copper);
-      transition: width 0.22s ease;
+      display: none;
     }
 
     .nav-links a:hover { color: var(--fg); }
@@ -683,8 +677,6 @@
     .mk-ul {
       color: var(--fg);
       font-weight: 500;
-      border-bottom: 1.5px solid var(--copper-dim);
-      padding-bottom: 1px;
     }
 
     .about-side { display: flex; flex-direction: column; gap: 24px; }
